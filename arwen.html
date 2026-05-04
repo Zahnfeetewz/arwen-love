@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,25 +10,27 @@ body {
     color: white;
     text-align: center;
     font-family: Arial;
+    overflow: hidden;
+}
+
+.text {
+    padding-top: 20px;
+    font-size: 20px;
 }
 
 canvas {
     display: block;
     margin: auto;
 }
-
-.text {
-    padding-top: 30px;
-    font-size: 20px;
-}
 </style>
 </head>
+
 <body>
 
 <div class="text">
-<h1 style="color:red;">❤️ Für Arwen ❤️</h1>
+<h1 style="color:red;">❤️ Arwen ❤️</h1>
 <p>
-Ich bin sehr glücklich, dass wir 1 Monat zusammen sind.<br>
+Ich bin glücklich, dass wir 1 Monat zusammen sind.<br>
 Ich liebe dich und bin immer für dich da.<br>
 Du und ich – gegen den Rest der Welt ❤️
 </p>
@@ -47,7 +48,7 @@ c.height = window.innerHeight;
 let t = 0;
 
 function heart(n){
-    let x = 16 * Math.pow(Math.sin(n),3);
+    let x = 16 * Math.pow(Math.sin(n), 3);
     let y = 13 * Math.cos(n) - 5 * Math.cos(2*n)
           - 2 * Math.cos(3*n) - Math.cos(4*n);
     return [x,y];
@@ -58,9 +59,13 @@ function draw(){
     ctx.fillRect(0,0,c.width,c.height);
 
     for(let i=0;i<200;i++){
-        let p = heart(t+i*0.05);
+        let p = heart(t + i*0.05);
         ctx.fillStyle = "red";
-        ctx.fillRect(c.width/2 + p[0]*10, c.height/2 - p[1]*10, 2, 2);
+        ctx.fillRect(
+            c.width/2 + p[0]*10,
+            c.height/2 - p[1]*10,
+            2,2
+        );
     }
 
     t += 0.03;

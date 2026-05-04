@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Für Arwen ❤️</title>
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+}
+
+.text {
+    padding-top: 30px;
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="text">
+<h1 style="color:red;">❤️ Für Arwen ❤️</h1>
+<p>
+Ich bin sehr glücklich, dass wir 1 Monat zusammen sind.<br>
+Ich liebe dich und bin immer für dich da.<br>
+Du und ich – gegen den Rest der Welt ❤️
+</p>
+</div>
+
+<canvas id="c"></canvas>
+
+<script>
+const c = document.getElementById("c");
+const ctx = c.getContext("2d");
+
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+
+let t = 0;
+
+function heart(n){
+    let x = 16 * Math.pow(Math.sin(n),3);
+    let y = 13 * Math.cos(n) - 5 * Math.cos(2*n)
+          - 2 * Math.cos(3*n) - Math.cos(4*n);
+    return [x,y];
+}
+
+function draw(){
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,c.width,c.height);
+
+    for(let i=0;i<200;i++){
+        let p = heart(t+i*0.05);
+        ctx.fillStyle = "red";
+        ctx.fillRect(c.width/2 + p[0]*10, c.height/2 - p[1]*10, 2, 2);
+    }
+
+    t += 0.03;
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>
